@@ -217,18 +217,85 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMyA9PSAoMiArIDEpXG5cImludGVybWVkaWF0ZVwiICE9IFwiclwiXG5UUlVFICE9IEZBTFNFXG5cIlJjaGl0ZWN0XCIgIT0gXCJyY2hpdGVjdFwiXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMyA9PSAoMiArIDEpXG5cImludGVybWVkaWF0ZVwiICE9IFwiclwiXG5UUlVFICE9IEZBTFNFXG5cIlJjaGl0ZWN0XCIgIT0gXCJyY2hpdGVjdFwiXG5cbnRvdXBwZXIoXCJSY2hpdGVjdFwiKVxudG9sb3dlcihcIlJjaGl0ZWN0XCIpXG5gYGAifQ== -->
 <pre class="r"><code>3 == (2 + 1)
 &quot;intermediate&quot; != &quot;r&quot;
 TRUE != FALSE
 &quot;Rchitect&quot; != &quot;rchitect&quot;
+
+toupper(&quot;Rchitect&quot;)
+tolower(&quot;Rchitect&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Greater than</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuLTYqNSsyID49IC0xMCsxXG5cblwicmFpbmluZ1wiIDw9IFwidGFibGVcIlxuXG5cIlBcIiA8PSBcInBcIlxuXG5cIkBcIiA8PSBcIj9cIlxuXG5UUlVFID4gRkFMU0VcblxuYGBgIn0= -->
+<pre class="r"><code>-6*5+2 &gt;= -10+1
+
+&quot;raining&quot; &lt;= &quot;table&quot;
+
+&quot;P&quot; &lt;= &quot;p&quot;
+
+&quot;@&quot; &lt;= &quot;?&quot;
+
+TRUE &gt; FALSE
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Compare vectors</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlua2VkaW48LWMoMTYsOSwxMyw1LDIsMTcsMTQpXG5mYWNlYm9vazwtYygxNyw3LDUsMTYsOCwxMywxNClcblxubGlua2VkaW4gPiAxNVxuZmFjZWJvb2sgPD0xMFxuXG5saW5rZWRpbiA+ZmFjZWJvb2tcblxudmlld3MgPC0gbWF0cml4KGMobGlua2VkaW4sZmFjZWJvb2spLCBucm93ID0gMiwgYnlyb3cgPSBUUlVFKVxudmlld3Ncblxudmlld3MgPT0xM1xudmlld3MgPD0gMTRcblxuYGBgIn0= -->
+<pre class="r"><code>linkedin&lt;-c(16,9,13,5,2,17,14)
+facebook&lt;-c(17,7,5,16,8,13,14)
+
+linkedin &gt; 15
+facebook &lt;=10
+
+linkedin &gt;facebook
+
+views &lt;- matrix(c(linkedin,facebook), nrow = 2, byrow = TRUE)
+views
+
+views ==13
+views &lt;= 14
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Logical operators</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlua2VkaW4gPD0gMTAgJiBmYWNlYm9vayA9PSAxM1xubGlua2VkaW4gPD0gMTAgfCBmYWNlYm9vayA9PSAxM1xuXG52aWV3cz4xMSAmIHZpZXdzPD0xNFxuYGBgIn0= -->
+<pre class="r"><code>linkedin &lt;= 10 &amp; facebook == 13
+linkedin &lt;= 10 | facebook == 13
+
+views&gt;11 &amp; views&lt;=14</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The IF statement</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVkaXVtIDwtIFwiTGlua2VkaW5cIlxubnVtX3ZpZXcgPC0gMTRcblxuaWYgKG1lZGl1bSA9PSBcIkxpbmtlZGluXCIpe1xuICBwcmludChcIlNob3dpbmcgTGlua2VkSW4gSW5mb3JtYXRpb25cIilcbn0gZWxzZSB7XG4gIHByaW50KFwiVW5rbm93biBtZWRpdW1cIilcbn1cblxuYGBgIn0= -->
+<pre class="r"><code>medium &lt;- &quot;Linkedin&quot;
+num_view &lt;- 14
+
+if (medium == &quot;Linkedin&quot;){
+  print(&quot;Showing LinkedIn Information&quot;)
+} else {
+  print(&quot;Unknown medium&quot;)
+}
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgSW50ZXJtZWRpb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCjMgPT0gKDIgKyAxKQ0KImludGVybWVkaWF0ZSIgIT0gInIiDQpUUlVFICE9IEZBTFNFDQoiUmNoaXRlY3QiICE9ICJyY2hpdGVjdCINCg0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgSW50ZXJtZWRpb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCjMgPT0gKDIgKyAxKQ0KImludGVybWVkaWF0ZSIgIT0gInIiDQpUUlVFICE9IEZBTFNFDQoiUmNoaXRlY3QiICE9ICJyY2hpdGVjdCINCg0KdG91cHBlcigiUmNoaXRlY3QiKQ0KdG9sb3dlcigiUmNoaXRlY3QiKQ0KYGBgDQoNCkdyZWF0ZXIgdGhhbg0KYGBge3J9DQotNio1KzIgPj0gLTEwKzENCg0KInJhaW5pbmciIDw9ICJ0YWJsZSINCg0KIlAiIDw9ICJwIg0KDQoiQCIgPD0gIj8iDQoNClRSVUUgPiBGQUxTRQ0KDQpgYGANCg0KQ29tcGFyZSB2ZWN0b3JzDQpgYGB7cn0NCmxpbmtlZGluPC1jKDE2LDksMTMsNSwyLDE3LDE0KQ0KZmFjZWJvb2s8LWMoMTcsNyw1LDE2LDgsMTMsMTQpDQoNCmxpbmtlZGluID4gMTUNCmZhY2Vib29rIDw9MTANCg0KbGlua2VkaW4gPmZhY2Vib29rDQoNCnZpZXdzIDwtIG1hdHJpeChjKGxpbmtlZGluLGZhY2Vib29rKSwgbnJvdyA9IDIsIGJ5cm93ID0gVFJVRSkNCnZpZXdzDQoNCnZpZXdzID09MTMNCnZpZXdzIDw9IDE0DQoNCmBgYA0KDQpMb2dpY2FsIG9wZXJhdG9ycw0KYGBge3J9DQpsaW5rZWRpbiA8PSAxMCAmIGZhY2Vib29rID09IDEzDQpsaW5rZWRpbiA8PSAxMCB8IGZhY2Vib29rID09IDEzDQoNCnZpZXdzPjExICYgdmlld3M8PTE0DQpgYGANCg0KVGhlIElGIHN0YXRlbWVudA0KYGBge3J9DQptZWRpdW0gPC0gIkxpbmtlZGluIg0KbnVtX3ZpZXcgPC0gMTQNCg0KaWYgKG1lZGl1bSA9PSAiTGlua2VkaW4iKXsNCiAgcHJpbnQoIlNob3dpbmcgTGlua2VkSW4gSW5mb3JtYXRpb24iKQ0KfSBlbHNlIHsNCiAgcHJpbnQoIlVua25vd24gbWVkaXVtIikNCn0NCg0KYGBgDQoNCg==</div>
 
 
 

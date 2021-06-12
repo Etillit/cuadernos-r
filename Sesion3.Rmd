@@ -9,5 +9,101 @@ output: html_notebook
 TRUE != FALSE
 "Rchitect" != "rchitect"
 
+toupper("Rchitect")
+tolower("Rchitect")
+```
+
+Greater than
+```{r}
+-6*5+2 >= -10+1
+
+"raining" <= "table"
+
+"P" <= "p"
+
+"@" <= "?"
+
+TRUE > FALSE
+
+```
+
+Compare vectors
+```{r}
+linkedin<-c(16,9,13,5,2,17,14)
+facebook<-c(17,7,5,16,8,13,14)
+
+linkedin > 15
+facebook <=10
+
+linkedin >facebook
+
+views <- matrix(c(linkedin,facebook), nrow = 2, byrow = TRUE)
+views
+
+views ==13
+views <= 14
+
+```
+
+Logical operators
+```{r}
+linkedin <= 10 & facebook == 13
+linkedin <= 10 | facebook == 13
+
+views>11 & views<=14
+```
+
+The IF statement
+```{r}
+medium <- "Linkedin"
+num_views <- 14
+
+if (medium == "Linkedin"){
+  print("Showing LinkedIn Information")
+} else {
+  print("Unknown medium")
+}
+
+if (num_view>15){
+  print("You are popular")
+} else {
+  print("Try to be more visible")
+}
+
+```
+
+Customize further
+```{r}
+medium<-"Facebook"
+
+if (medium == "Linkedin"){
+  print("Showing LinkedIn Information")
+} else if (medium=="Facebook"){
+  print("Showing Facebook Information")
+} else {
+    print("Unknown medium")
+}
+
+
+```
+
+Else IF 2.0
+```{r}
+number<-75
+result<-""
+
+if (number<10) {
+  if (number<5){
+    result<-"Extra Small"
+  } else {
+    result<-"Small"
+  }
+} else if (number<100) {
+  result<-"Medium"
+} else {
+  result<-"large"
+}
+
+print(result)
 ```
 
