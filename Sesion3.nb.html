@@ -280,22 +280,68 @@ views&gt;11 &amp; views&lt;=14</code></pre>
 <p>The IF statement</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVkaXVtIDwtIFwiTGlua2VkaW5cIlxubnVtX3ZpZXcgPC0gMTRcblxuaWYgKG1lZGl1bSA9PSBcIkxpbmtlZGluXCIpe1xuICBwcmludChcIlNob3dpbmcgTGlua2VkSW4gSW5mb3JtYXRpb25cIilcbn0gZWxzZSB7XG4gIHByaW50KFwiVW5rbm93biBtZWRpdW1cIilcbn1cblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVkaXVtIDwtIFwiTGlua2VkaW5cIlxubnVtX3ZpZXdzIDwtIDE0XG5cbmlmIChtZWRpdW0gPT0gXCJMaW5rZWRpblwiKXtcbiAgcHJpbnQoXCJTaG93aW5nIExpbmtlZEluIEluZm9ybWF0aW9uXCIpXG59IGVsc2Uge1xuICBwcmludChcIlVua25vd24gbWVkaXVtXCIpXG59XG5cbmlmIChudW1fdmlldz4xNSl7XG4gIHByaW50KFwiWW91IGFyZSBwb3B1bGFyXCIpXG59IGVsc2Uge1xuICBwcmludChcIlRyeSB0byBiZSBtb3JlIHZpc2libGVcIilcbn1cblxuYGBgIn0= -->
 <pre class="r"><code>medium &lt;- &quot;Linkedin&quot;
-num_view &lt;- 14
+num_views &lt;- 14
 
 if (medium == &quot;Linkedin&quot;){
   print(&quot;Showing LinkedIn Information&quot;)
 } else {
   print(&quot;Unknown medium&quot;)
 }
+
+if (num_view&gt;15){
+  print(&quot;You are popular&quot;)
+} else {
+  print(&quot;Try to be more visible&quot;)
+}
 </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Customize further</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVkaXVtPC1cIkZhY2Vib29rXCJcblxuaWYgKG1lZGl1bSA9PSBcIkxpbmtlZGluXCIpe1xuICBwcmludChcIlNob3dpbmcgTGlua2VkSW4gSW5mb3JtYXRpb25cIilcbn0gZWxzZSBpZiAobWVkaXVtPT1cIkZhY2Vib29rXCIpe1xuICBwcmludChcIlNob3dpbmcgRmFjZWJvb2sgSW5mb3JtYXRpb25cIilcbn0gZWxzZSB7XG4gICAgcHJpbnQoXCJVbmtub3duIG1lZGl1bVwiKVxufVxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>medium&lt;-&quot;Facebook&quot;
+
+if (medium == &quot;Linkedin&quot;){
+  print(&quot;Showing LinkedIn Information&quot;)
+} else if (medium==&quot;Facebook&quot;){
+  print(&quot;Showing Facebook Information&quot;)
+} else {
+    print(&quot;Unknown medium&quot;)
+}
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Else IF 2.0</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtYmVyPC03NVxucmVzdWx0PC1cIlwiXG5cbmlmIChudW1iZXI8MTApIHtcbiAgaWYgKG51bWJlcjw1KXtcbiAgICByZXN1bHQ8LVwiRXh0cmEgU21hbGxcIlxuICB9IGVsc2Uge1xuICAgIHJlc3VsdDwtXCJTbWFsbFwiXG4gIH1cbn0gZWxzZSBpZiAobnVtYmVyPDEwMCkge1xuICByZXN1bHQ8LVwiTWVkaXVtXCJcbn0gZWxzZSB7XG4gIHJlc3VsdDwtXCJsYXJnZVwiXG59XG5cbnByaW50KHJlc3VsdClcbmBgYCJ9 -->
+<pre class="r"><code>number&lt;-75
+result&lt;-&quot;&quot;
+
+if (number&lt;10) {
+  if (number&lt;5){
+    result&lt;-&quot;Extra Small&quot;
+  } else {
+    result&lt;-&quot;Small&quot;
+  }
+} else if (number&lt;100) {
+  result&lt;-&quot;Medium&quot;
+} else {
+  result&lt;-&quot;large&quot;
+}
+
+print(result)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgSW50ZXJtZWRpb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCjMgPT0gKDIgKyAxKQ0KImludGVybWVkaWF0ZSIgIT0gInIiDQpUUlVFICE9IEZBTFNFDQoiUmNoaXRlY3QiICE9ICJyY2hpdGVjdCINCg0KdG91cHBlcigiUmNoaXRlY3QiKQ0KdG9sb3dlcigiUmNoaXRlY3QiKQ0KYGBgDQoNCkdyZWF0ZXIgdGhhbg0KYGBge3J9DQotNio1KzIgPj0gLTEwKzENCg0KInJhaW5pbmciIDw9ICJ0YWJsZSINCg0KIlAiIDw9ICJwIg0KDQoiQCIgPD0gIj8iDQoNClRSVUUgPiBGQUxTRQ0KDQpgYGANCg0KQ29tcGFyZSB2ZWN0b3JzDQpgYGB7cn0NCmxpbmtlZGluPC1jKDE2LDksMTMsNSwyLDE3LDE0KQ0KZmFjZWJvb2s8LWMoMTcsNyw1LDE2LDgsMTMsMTQpDQoNCmxpbmtlZGluID4gMTUNCmZhY2Vib29rIDw9MTANCg0KbGlua2VkaW4gPmZhY2Vib29rDQoNCnZpZXdzIDwtIG1hdHJpeChjKGxpbmtlZGluLGZhY2Vib29rKSwgbnJvdyA9IDIsIGJ5cm93ID0gVFJVRSkNCnZpZXdzDQoNCnZpZXdzID09MTMNCnZpZXdzIDw9IDE0DQoNCmBgYA0KDQpMb2dpY2FsIG9wZXJhdG9ycw0KYGBge3J9DQpsaW5rZWRpbiA8PSAxMCAmIGZhY2Vib29rID09IDEzDQpsaW5rZWRpbiA8PSAxMCB8IGZhY2Vib29rID09IDEzDQoNCnZpZXdzPjExICYgdmlld3M8PTE0DQpgYGANCg0KVGhlIElGIHN0YXRlbWVudA0KYGBge3J9DQptZWRpdW0gPC0gIkxpbmtlZGluIg0KbnVtX3ZpZXcgPC0gMTQNCg0KaWYgKG1lZGl1bSA9PSAiTGlua2VkaW4iKXsNCiAgcHJpbnQoIlNob3dpbmcgTGlua2VkSW4gSW5mb3JtYXRpb24iKQ0KfSBlbHNlIHsNCiAgcHJpbnQoIlVua25vd24gbWVkaXVtIikNCn0NCg0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgSW50ZXJtZWRpb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCjMgPT0gKDIgKyAxKQ0KImludGVybWVkaWF0ZSIgIT0gInIiDQpUUlVFICE9IEZBTFNFDQoiUmNoaXRlY3QiICE9ICJyY2hpdGVjdCINCg0KdG91cHBlcigiUmNoaXRlY3QiKQ0KdG9sb3dlcigiUmNoaXRlY3QiKQ0KYGBgDQoNCkdyZWF0ZXIgdGhhbg0KYGBge3J9DQotNio1KzIgPj0gLTEwKzENCg0KInJhaW5pbmciIDw9ICJ0YWJsZSINCg0KIlAiIDw9ICJwIg0KDQoiQCIgPD0gIj8iDQoNClRSVUUgPiBGQUxTRQ0KDQpgYGANCg0KQ29tcGFyZSB2ZWN0b3JzDQpgYGB7cn0NCmxpbmtlZGluPC1jKDE2LDksMTMsNSwyLDE3LDE0KQ0KZmFjZWJvb2s8LWMoMTcsNyw1LDE2LDgsMTMsMTQpDQoNCmxpbmtlZGluID4gMTUNCmZhY2Vib29rIDw9MTANCg0KbGlua2VkaW4gPmZhY2Vib29rDQoNCnZpZXdzIDwtIG1hdHJpeChjKGxpbmtlZGluLGZhY2Vib29rKSwgbnJvdyA9IDIsIGJ5cm93ID0gVFJVRSkNCnZpZXdzDQoNCnZpZXdzID09MTMNCnZpZXdzIDw9IDE0DQoNCmBgYA0KDQpMb2dpY2FsIG9wZXJhdG9ycw0KYGBge3J9DQpsaW5rZWRpbiA8PSAxMCAmIGZhY2Vib29rID09IDEzDQpsaW5rZWRpbiA8PSAxMCB8IGZhY2Vib29rID09IDEzDQoNCnZpZXdzPjExICYgdmlld3M8PTE0DQpgYGANCg0KVGhlIElGIHN0YXRlbWVudA0KYGBge3J9DQptZWRpdW0gPC0gIkxpbmtlZGluIg0KbnVtX3ZpZXdzIDwtIDE0DQoNCmlmIChtZWRpdW0gPT0gIkxpbmtlZGluIil7DQogIHByaW50KCJTaG93aW5nIExpbmtlZEluIEluZm9ybWF0aW9uIikNCn0gZWxzZSB7DQogIHByaW50KCJVbmtub3duIG1lZGl1bSIpDQp9DQoNCmlmIChudW1fdmlldz4xNSl7DQogIHByaW50KCJZb3UgYXJlIHBvcHVsYXIiKQ0KfSBlbHNlIHsNCiAgcHJpbnQoIlRyeSB0byBiZSBtb3JlIHZpc2libGUiKQ0KfQ0KDQpgYGANCg0KQ3VzdG9taXplIGZ1cnRoZXINCmBgYHtyfQ0KbWVkaXVtPC0iRmFjZWJvb2siDQoNCmlmIChtZWRpdW0gPT0gIkxpbmtlZGluIil7DQogIHByaW50KCJTaG93aW5nIExpbmtlZEluIEluZm9ybWF0aW9uIikNCn0gZWxzZSBpZiAobWVkaXVtPT0iRmFjZWJvb2siKXsNCiAgcHJpbnQoIlNob3dpbmcgRmFjZWJvb2sgSW5mb3JtYXRpb24iKQ0KfSBlbHNlIHsNCiAgICBwcmludCgiVW5rbm93biBtZWRpdW0iKQ0KfQ0KDQoNCmBgYA0KDQpFbHNlIElGIDIuMA0KYGBge3J9DQpudW1iZXI8LTc1DQpyZXN1bHQ8LSIiDQoNCmlmIChudW1iZXI8MTApIHsNCiAgaWYgKG51bWJlcjw1KXsNCiAgICByZXN1bHQ8LSJFeHRyYSBTbWFsbCINCiAgfSBlbHNlIHsNCiAgICByZXN1bHQ8LSJTbWFsbCINCiAgfQ0KfSBlbHNlIGlmIChudW1iZXI8MTAwKSB7DQogIHJlc3VsdDwtIk1lZGl1bSINCn0gZWxzZSB7DQogIHJlc3VsdDwtImxhcmdlIg0KfQ0KDQpwcmludChyZXN1bHQpDQpgYGANCg0K</div>
 
 
 
