@@ -134,6 +134,16 @@ years
 
 use of lapply using aditional arguments
 ```{r}
+select_el <- function(x, index){
+  x[index]
+}
 
+names <- lapply(split_lower, select_el, 1)
+
+names
+
+years <- lapply(split_lower, select_el, 2)
+
+years
 ```
 
