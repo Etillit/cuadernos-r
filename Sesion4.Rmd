@@ -110,3 +110,30 @@ for (t in temp){
 
 ```
 
+lapply and anonymous function
+```{r}
+
+(function(x,y){3*x*y})(9,10)
+
+pioneers <- c("GAUSS:1777","BAYES:1702","PASCAL:1623","PEARSON:1857")
+
+split <- strsplit(pioneers, split = ":")
+
+split
+
+split_lower <- lapply(split, tolower)
+
+split_lower
+
+names <- lapply(split_lower, function(x){x[1]})
+names
+
+years <- lapply(split_lower, function(x){x[2]})
+years
+```
+
+use of lapply using aditional arguments
+```{r}
+
+```
+
