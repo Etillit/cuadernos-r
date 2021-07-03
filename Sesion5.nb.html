@@ -215,269 +215,104 @@ pre code {
 
 
 <!-- rnb-text-begin -->
-<p>Functions Si se asigna un valor en la definición, éste será el valor por defecto</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG93X3R3byA8LSBmdW5jdGlvbih4LCBwcmludF9pbmZvPVRSVUUpe1xuICB5PC14XjJcbiAgaWYgKHByaW50X2luZm8pe1xuICAgIHByaW50KHBhc3RlKHgsIFwiIHRvIHRoZSBwb3dlciB0d28gZXF1YWxzIFwiLCB5KSlcbiAgfVxuICByZXR1cm4oeSlcbn1cblxucmVzdWx0PC1wb3dfdHdvKDMsIEZBTFNFKVxucmVzdWx0XG5cbmBgYCJ9 -->
-<pre class="r"><code>pow_two &lt;- function(x, print_info=TRUE){
-  y&lt;-x^2
-  if (print_info){
-    print(paste(x, &quot; to the power two equals &quot;, y))
-  }
-  return(y)
-}
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnYXBtaW5kZXIpXG5saWJyYXJ5KGRwbHlyKVxuXG5nYXBtaW5kZXJcbmBgYCJ9 -->
+<pre class="r"><code>library(gapminder)
+library(dplyr)
 
-result&lt;-pow_two(3, FALSE)
-result
+gapminder</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Data wrangling Se utilizará la función filter para extraer observaciones particulares Para poder utilizar la función filter necesitamos agregar el comando pipe %&gt;%</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAxOTU3KVxuXG5gYGAifQ== -->
+<pre class="r"><code>gapminder %&gt;%
+  filter(year == 1957)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>function scopping Las variables locales no se pueden modificar fuera del contexto de la función.</p>
+<p>Usando la función arrange</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG93X3R3byA8LSBmdW5jdGlvbih4LCBwcmludF9pbmZvPVRSVUUpe1xuICB5PC14XjJcbiAgaWYgKHByaW50X2luZm8pe1xuICAgIHByaW50KHBhc3RlKHgsIFwiIHRvIHRoZSBwb3dlciB0d28gZXF1YWxzIFwiLCB5KSlcbiAgfVxuICByZXR1cm4oeSlcbn1cblxucG93X3R3byg0KVxueVxueFxuYGBgIn0= -->
-<pre class="r"><code>pow_two &lt;- function(x, print_info=TRUE){
-  y&lt;-x^2
-  if (print_info){
-    print(paste(x, &quot; to the power two equals &quot;, y))
-  }
-  return(y)
-}
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JVxuICBhcnJhbmdlKGxpZmVFeHApXG5cbmdhcG1pbmRlciAlPiVcbiAgYXJyYW5nZShkZXNjKGxpZmVFeHApKVxuXG5gYGAifQ== -->
+<pre class="r"><code>gapminder %&gt;%
+  arrange(lifeExp)
 
-pow_two(4)
-y
-x</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>passing arguments by Value R toma los valores a la función, pero no modifica el valor de la variable pasada</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJpcGxlIDwtIGZ1bmN0aW9uKHgpe1xuICB4ID0geCAqIDNcbiAgeFxufVxuXG5hPC01XG50cmlwbGUoYSlcbmFcbmBgYCJ9 -->
-<pre class="r"><code>triple &lt;- function(x){
-  x = x * 3
-  x
-}
-
-a&lt;-5
-triple(a)
-a</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Other types of parameters</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlua2VkaW48LWMoMTYsOSwxMyw1LDIsMTcsMTQpXG5cbmludGVycHJldCA8LSBmdW5jdGlvbihudW1fdmlld3Mpe1xuICBpZiAobnVtX3ZpZXdzPjE1KXtcbiAgICBwcmludChcIllvdSBhcmUgcG9wdWxhclwiKVxuICAgIHJldHVybihudW1fdmlld3MpXG4gIH1cbiAgZWxzZSB7XG4gICAgcHJpbnQoXCJUcnkgdG8gYmUgbW9yZSB2aXNpYmxlXCIpXG4gICAgcmV0dXJuKDApXG4gIH1cbn1cblxuaW50ZXJwcmV0KGxpbmtlZGluWzFdKVxuXG5pbnRlcnByZXRfYWxsIDwtIGZ1bmN0aW9uKHZpZXdzLCByZXR1cm5fc3VtPVRSVUUpe1xuICBjb3VudCA8LSAwXG4gIGZvciAodiBpbiB2aWV3cyl7XG4gICAgY291bnQgPC0gY291bnQgKyBpbnRlcnByZXQodilcbiAgfVxuICBpZiAocmV0dXJuX3N1bSl7XG4gICAgcmV0dXJuKGNvdW50KVxuICB9XG4gIGVsc2Uge1xuICAgIHJldHVybihOVUxMKVxuICB9XG59XG5cbmludGVycHJldF9hbGwobGlua2VkaW4sIEZBTFNFKVxuXG5gYGAifQ== -->
-<pre class="r"><code>linkedin&lt;-c(16,9,13,5,2,17,14)
-
-interpret &lt;- function(num_views){
-  if (num_views&gt;15){
-    print(&quot;You are popular&quot;)
-    return(num_views)
-  }
-  else {
-    print(&quot;Try to be more visible&quot;)
-    return(0)
-  }
-}
-
-interpret(linkedin[1])
-
-interpret_all &lt;- function(views, return_sum=TRUE){
-  count &lt;- 0
-  for (v in views){
-    count &lt;- count + interpret(v)
-  }
-  if (return_sum){
-    return(count)
-  }
-  else {
-    return(NULL)
-  }
-}
-
-interpret_all(linkedin, FALSE)
+gapminder %&gt;%
+  arrange(desc(lifeExp))
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Load R packages</p>
+<p>Utilizando mas de 1 función</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuXG5xcGxvdChtdGNhcnMkd3QsbXRjYXJzJGhwKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAxOTU3KSAlPiVcbiAgYXJyYW5nZShwb3ApXG5cbmBgYCJ9 -->
+<pre class="r"><code>gapminder %&gt;%
+  filter(year == 1957) %&gt;%
+  arrange(pop)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Combining filter, mutate and arrange</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAyMDA3KSAlPiVcbiAgbXV0YXRlKGxpZmVFeHBNb250aHMgPSAxMiAqIGxpZmVFeHApICU+JVxuICBhcnJhbmdlKGRlc2MobGlmZUV4cE1vbnRocykpXG5gYGAifQ== -->
+<pre class="r"><code>gapminder %&gt;%
+  filter(year == 2007) %&gt;%
+  mutate(lifeExpMonths = 12 * lifeExp) %&gt;%
+  arrange(desc(lifeExpMonths))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Visualización con GGPLOT2</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuXG5nYXBtaW5kZXJfMTk1MiA8LSBnYXBtaW5kZXIgJT4lXG4gIGZpbHRlcih5ZWFyID09IDE5NTIpXG5cbmdhcG1pbmRlcl8xOTUyXG4jIEVsIHNpbWJvbG8gKyBmdW5jaW9uYSBjb21vIHBpcGUgcGFyYSBsYSBsaWJyZXJpYSBnZ3Bsb3RcbmdncGxvdChnYXBtaW5kZXJfMTk1MiwgYWVzKHg9cG9wLCB5PWdkcFBlcmNhcCkpICtcbiAgZ2VvbV9wb2ludCgpXG5cbmBgYCJ9 -->
 <pre class="r"><code>library(ggplot2)
 
-qplot(mtcars$wt,mtcars$hp)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Uso de familia apply lapply</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVtcCA8LSBsaXN0KGMoMyw3LDksNiwxKSwgYyg2LDksMTIsMTMsNSksIGMoNCw4LDMsLTEsLTMpLCBjKDEsNCw3LDIsLTIpLCBjKDUsNyw5LDQsMiksIGMoLTMsNSw4LDksNCksIGMoMyw2LDksNCwxKSlcblxubGFwcGx5KHRlbXAsIG1pbilcblxuc2VsZWN0IDwtIGZ1bmN0aW9uKHgpe1xuICBwcmludChwYXN0ZShcIlRoaXMgY29sbGVjdGlvbiBjb250YWlucyB0b3RhbCA9IFwiLCBzdW0oeCkpKVxufVxuXG5saXN0IDwtbGFwcGx5KHRlbXAsIHNlbGVjdClcbmxpc3RcblxuZm9yICh0IGluIHRlbXApe1xuICBwcmludChtaW4odCkpXG59XG5cbmBgYCJ9 -->
-<pre class="r"><code>temp &lt;- list(c(3,7,9,6,1), c(6,9,12,13,5), c(4,8,3,-1,-3), c(1,4,7,2,-2), c(5,7,9,4,2), c(-3,5,8,9,4), c(3,6,9,4,1))
+gapminder_1952 &lt;- gapminder %&gt;%
+  filter(year == 1952)
 
-lapply(temp, min)
-
-select &lt;- function(x){
-  print(paste(&quot;This collection contains total = &quot;, sum(x)))
-}
-
-list &lt;-lapply(temp, select)
-list
-
-for (t in temp){
-  print(min(t))
-}
+gapminder_1952
+# El simbolo + funciona como pipe para la libreria ggplot
+ggplot(gapminder_1952, aes(x=pop, y=gdpPercap)) +
+  geom_point()
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>lapply and anonymous function</p>
+<p>Escala logaritmica Una herramienta útil al momento de graficar grandes cantidades de datos</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4oZnVuY3Rpb24oeCx5KXszKngqeX0pKDksMTApXG5cbnBpb25lZXJzIDwtIGMoXCJHQVVTUzoxNzc3XCIsXCJCQVlFUzoxNzAyXCIsXCJQQVNDQUw6MTYyM1wiLFwiUEVBUlNPTjoxODU3XCIpXG5cbnNwbGl0IDwtIHN0cnNwbGl0KHBpb25lZXJzLCBzcGxpdCA9IFwiOlwiKVxuXG5zcGxpdFxuXG5zcGxpdF9sb3dlciA8LSBsYXBwbHkoc3BsaXQsIHRvbG93ZXIpXG5cbnNwbGl0X2xvd2VyXG5cbm5hbWVzIDwtIGxhcHBseShzcGxpdF9sb3dlciwgZnVuY3Rpb24oeCl7eFsxXX0pXG5uYW1lc1xuXG55ZWFycyA8LSBsYXBwbHkoc3BsaXRfbG93ZXIsIGZ1bmN0aW9uKHgpe3hbMl19KVxueWVhcnNcbmBgYCJ9 -->
-<pre class="r"><code>
-(function(x,y){3*x*y})(9,10)
-
-pioneers &lt;- c(&quot;GAUSS:1777&quot;,&quot;BAYES:1702&quot;,&quot;PASCAL:1623&quot;,&quot;PEARSON:1857&quot;)
-
-split &lt;- strsplit(pioneers, split = &quot;:&quot;)
-
-split
-
-split_lower &lt;- lapply(split, tolower)
-
-split_lower
-
-names &lt;- lapply(split_lower, function(x){x[1]})
-names
-
-years &lt;- lapply(split_lower, function(x){x[2]})
-years</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>use of lapply using aditional arguments</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VsZWN0X2VsIDwtIGZ1bmN0aW9uKHgsIGluZGV4KXtcbiAgeFtpbmRleF1cbn1cblxubmFtZXMgPC0gbGFwcGx5KHNwbGl0X2xvd2VyLCBzZWxlY3RfZWwsIDEpXG5cbm5hbWVzXG5cbnllYXJzIDwtIGxhcHBseShzcGxpdF9sb3dlciwgc2VsZWN0X2VsLCAyKVxuXG55ZWFyc1xuYGBgIn0= -->
-<pre class="r"><code>select_el &lt;- function(x, index){
-  x[index]
-}
-
-names &lt;- lapply(split_lower, select_el, 1)
-
-names
-
-years &lt;- lapply(split_lower, select_el, 2)
-
-years</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Uso de sapply</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVtcCA8LSBsaXN0KGMoMyw3LDksNiwxKSwgYyg2LDksMTIsMTMsNSksIGMoNCw4LDMsLTEsLTMpLCBjKDEsNCw3LDIsLTIpLCBjKDUsNyw5LDQsMiksIGMoLTMsNSw4LDksNCksIGMoMyw2LDksNCwxKSlcblxuZXh0cmVtZSA8LSBmdW5jdGlvbih4KXtcbiAgYyhtaW49bWluKHgpLCBtYXg9bWF4KHgpKVxufVxuXG5sYXBwbHkodGVtcCwgZXh0cmVtZSlcbnNhcHBseSh0ZW1wLCBleHRyZW1lKVxuXG50ZW1wMiA8LSBsaXN0KDEsMiwzLDQsNSlcblxudGVtcDJcbmZ1bmNfdGVtcDIgPC0gZnVuY3Rpb24oeCl7XG4gIHhcbn1cblxubGFwcGx5KHRlbXAyLCBmdW5jX3RlbXAyKVxuc2FwcGx5KHRlbXAyLCBmdW5jX3RlbXAyKVxuXG5cbmBgYCJ9 -->
-<pre class="r"><code>temp &lt;- list(c(3,7,9,6,1), c(6,9,12,13,5), c(4,8,3,-1,-3), c(1,4,7,2,-2), c(5,7,9,4,2), c(-3,5,8,9,4), c(3,6,9,4,1))
-
-extreme &lt;- function(x){
-  c(min=min(x), max=max(x))
-}
-
-lapply(temp, extreme)
-sapply(temp, extreme)
-
-temp2 &lt;- list(1,2,3,4,5)
-
-temp2
-func_temp2 &lt;- function(x){
-  x
-}
-
-lapply(temp2, func_temp2)
-sapply(temp2, func_temp2)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9Z2RwUGVyY2FwKSkgK1xuICBnZW9tX3BvaW50KCkgK1xuICBzY2FsZV94X2xvZzEwKCkgK1xuICBzY2FsZV95X2xvZzEwKClcblxuYGBgIn0= -->
+<pre class="r"><code>ggplot(gapminder_1952, aes(x=pop, y=gdpPercap)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Agregando color al gráfico</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5iYXNpY3MgPC0gZnVuY3Rpb24oeCl7XG4gIGMobWluID0gbWluKHgpLCBtZWFuID0gbWVhbih4KSwgbWF4ID0gbWF4KHgpKVxufVxuXG5sYXBwbHkodGVtcCwgYmFzaWNzKVxuc2FwcGx5KHRlbXAsIGJhc2ljcylcblxudmFwcGx5KHRlbXAsIGJhc2ljcywgbnVtZXJpYygzKSlcblxudGVtcDMgPC0gYyhcIkd1YXRlbWFsYVwiLFwiU2FsdmFkb3JcIixcIkhvbmR1cmFzXCIsIFwiTmljYXJhZ3VhXCIpXG5cbnVuaXF1ZV9sZXR0ZXJzIDwtIGZ1bmN0aW9uKG5hbWUpe1xuICBiYW5lIDwtIGdzdWIoXCIgXCIsXCJcIiwgbmFtZSlcbiAgbGV0dGVycyA8LSBzdHJzcGxpdChuYW1lLCBzcGxpdCA9IFwiXCIpW1sxXV1cbiAgdW5pcXVlKGxldHRlcnMpXG59XG5cbmxhcHBseSh0ZW1wMywgdW5pcXVlX2xldHRlcnMpXG5zYXBwbHkodGVtcDMsIHVuaXF1ZV9sZXR0ZXJzKVxuXG52YXBwbHkodGVtcDMsIHVuaXF1ZV9sZXR0ZXJzLCBuY2hhcig3KSlcbmBgYCJ9 -->
-<pre class="r"><code>
-basics &lt;- function(x){
-  c(min = min(x), mean = mean(x), max = max(x))
-}
-
-lapply(temp, basics)
-sapply(temp, basics)
-
-vapply(temp, basics, numeric(3))
-
-temp3 &lt;- c(&quot;Guatemala&quot;,&quot;Salvador&quot;,&quot;Honduras&quot;, &quot;Nicaragua&quot;)
-
-unique_letters &lt;- function(name){
-  bane &lt;- gsub(&quot; &quot;,&quot;&quot;, name)
-  letters &lt;- strsplit(name, split = &quot;&quot;)[[1]]
-  unique(letters)
-}
-
-lapply(temp3, unique_letters)
-sapply(temp3, unique_letters)
-
-vapply(temp3, unique_letters, nchar(7))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Funciones útiles incorporadas en R Existen otras funciones que también son útiles y deberán ser exploradas individualmente ya que por ser muchas no se podrán ver en el curso.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXJyb3JzIDwtIGMoMS45LCAtMi42LCA0LjAsIC05LjUsIC0zLjQsIDcuMylcblxucHJpbnQocm91bmQoc3VtKGFicyhlcnJvcnMpKSkpXG5cbj9yb3VuZFxuXG5saW5rZWRpbiA8LSBsaXN0KDE2LCA5LCAxMywgNSwgMiwgMTcsIDE0KVxuZmFjZWJvb2sgPC0gbGlzdCgxNywgNywgNSwgMTYsIDgsIDEzLCAxNClcbmxpbmtlZGluXG5cblxubGlfdmVjIDwtIHVubGlzdChsaW5rZWRpbilcbmZiX3ZlYyA8LSB1bmxpc3QoZmFjZWJvb2spXG5saV92ZWNcbmZiX3ZlY1xuXG5zb2NpYWxfdmVjIDwtIGFwcGVuZChsaV92ZWMsIGZiX3ZlYylcbnNvY2lhbF92ZWNcblxuc29ydChzb2NpYWxfdmVjLCBkZWNyZWFzaW5nID0gVFJVRSlcblxuYGBgIn0= -->
-<pre class="r"><code>errors &lt;- c(1.9, -2.6, 4.0, -9.5, -3.4, 7.3)
-
-print(round(sum(abs(errors))))
-
-?round
-
-linkedin &lt;- list(16, 9, 13, 5, 2, 17, 14)
-facebook &lt;- list(17, 7, 5, 16, 8, 13, 14)
-linkedin
-
-
-li_vec &lt;- unlist(linkedin)
-fb_vec &lt;- unlist(facebook)
-li_vec
-fb_vec
-
-social_vec &lt;- append(li_vec, fb_vec)
-social_vec
-
-sort(social_vec, decreasing = TRUE)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Uso de grep y grepl</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZW1haWxzIDwtIGMoXCJqb2huLmRvZUBpdnlsZWFndWUuZWR1XCIsIFwiZWR1Y2F0aW9uQHdvcmxkLmdvdlwiLCBcImRhbGFpLmxhbWFAcGVhY2Uub3JnXCIsXG4gICAgICAgICAgICBcImludmFsaWQuZWR1XCIsIFwicXVhbnRAYmlnZGF0YWNvbGxlZ2UuZWR1XCIsIFwiY29va2llLm1vbnN0ZXJAc2VzYW1lLnR2XCIpXG5cbmdyZXBsKHBhdHRlcm4gPSBcImVkdVwiLCBlbWFpbHMpXG5oaXRzIDwtIGdyZXAocGF0dGVybiA9IFwiZWR1XCIsIGVtYWlscylcblxuZW1haWxzW2hpdHNdXG5cbmBgYCJ9 -->
-<pre class="r"><code>emails &lt;- c(&quot;john.doe@ivyleague.edu&quot;, &quot;education@world.gov&quot;, &quot;dalai.lama@peace.org&quot;,
-            &quot;invalid.edu&quot;, &quot;quant@bigdatacollege.edu&quot;, &quot;cookie.monster@sesame.tv&quot;)
-
-grepl(pattern = &quot;edu&quot;, emails)
-hits &lt;- grep(pattern = &quot;edu&quot;, emails)
-
-emails[hits]
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9bGlmZUV4cCwgY29sb3IgPSBjb250aW5lbnQpKSArXG4gIGdlb21fcG9pbnQoKSArXG4gIHNjYWxlX3hfbG9nMTAoKVxuXG5gYGAifQ== -->
+<pre class="r"><code>ggplot(gapminder_1952, aes(x=pop, y=lifeExp, color = continent)) +
+  geom_point() +
+  scale_x_log10()
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpGdW5jdGlvbnMNClNpIHNlIGFzaWduYSB1biB2YWxvciBlbiBsYSBkZWZpbmljacOzbiwgw6lzdGUgc2Vyw6EgZWwgdmFsb3IgcG9yIGRlZmVjdG8NCmBgYHtyfQ0KcG93X3R3byA8LSBmdW5jdGlvbih4LCBwcmludF9pbmZvPVRSVUUpew0KICB5PC14XjINCiAgaWYgKHByaW50X2luZm8pew0KICAgIHByaW50KHBhc3RlKHgsICIgdG8gdGhlIHBvd2VyIHR3byBlcXVhbHMgIiwgeSkpDQogIH0NCiAgcmV0dXJuKHkpDQp9DQoNCnJlc3VsdDwtcG93X3R3bygzLCBGQUxTRSkNCnJlc3VsdA0KDQpgYGANCg0KZnVuY3Rpb24gc2NvcHBpbmcNCkxhcyB2YXJpYWJsZXMgbG9jYWxlcyBubyBzZSBwdWVkZW4gbW9kaWZpY2FyIGZ1ZXJhIGRlbCBjb250ZXh0byBkZSBsYSBmdW5jacOzbi4NCmBgYHtyfQ0KcG93X3R3byA8LSBmdW5jdGlvbih4LCBwcmludF9pbmZvPVRSVUUpew0KICB5PC14XjINCiAgaWYgKHByaW50X2luZm8pew0KICAgIHByaW50KHBhc3RlKHgsICIgdG8gdGhlIHBvd2VyIHR3byBlcXVhbHMgIiwgeSkpDQogIH0NCiAgcmV0dXJuKHkpDQp9DQoNCnBvd190d28oNCkNCnkNCngNCmBgYA0KDQpwYXNzaW5nIGFyZ3VtZW50cyBieSBWYWx1ZQ0KUiB0b21hIGxvcyB2YWxvcmVzIGEgbGEgZnVuY2nDs24sIHBlcm8gbm8gbW9kaWZpY2EgZWwgdmFsb3IgZGUgbGEgdmFyaWFibGUgcGFzYWRhDQpgYGB7cn0NCnRyaXBsZSA8LSBmdW5jdGlvbih4KXsNCiAgeCA9IHggKiAzDQogIHgNCn0NCg0KYTwtNQ0KdHJpcGxlKGEpDQphDQpgYGANCg0KT3RoZXIgdHlwZXMgb2YgcGFyYW1ldGVycw0KYGBge3J9DQpsaW5rZWRpbjwtYygxNiw5LDEzLDUsMiwxNywxNCkNCg0KaW50ZXJwcmV0IDwtIGZ1bmN0aW9uKG51bV92aWV3cyl7DQogIGlmIChudW1fdmlld3M+MTUpew0KICAgIHByaW50KCJZb3UgYXJlIHBvcHVsYXIiKQ0KICAgIHJldHVybihudW1fdmlld3MpDQogIH0NCiAgZWxzZSB7DQogICAgcHJpbnQoIlRyeSB0byBiZSBtb3JlIHZpc2libGUiKQ0KICAgIHJldHVybigwKQ0KICB9DQp9DQoNCmludGVycHJldChsaW5rZWRpblsxXSkNCg0KaW50ZXJwcmV0X2FsbCA8LSBmdW5jdGlvbih2aWV3cywgcmV0dXJuX3N1bT1UUlVFKXsNCiAgY291bnQgPC0gMA0KICBmb3IgKHYgaW4gdmlld3Mpew0KICAgIGNvdW50IDwtIGNvdW50ICsgaW50ZXJwcmV0KHYpDQogIH0NCiAgaWYgKHJldHVybl9zdW0pew0KICAgIHJldHVybihjb3VudCkNCiAgfQ0KICBlbHNlIHsNCiAgICByZXR1cm4oTlVMTCkNCiAgfQ0KfQ0KDQppbnRlcnByZXRfYWxsKGxpbmtlZGluLCBGQUxTRSkNCg0KYGBgDQoNCkxvYWQgUiBwYWNrYWdlcw0KYGBge3J9DQpsaWJyYXJ5KGdncGxvdDIpDQoNCnFwbG90KG10Y2FycyR3dCxtdGNhcnMkaHApDQpgYGANCg0KDQpVc28gZGUgZmFtaWxpYSBhcHBseQ0KbGFwcGx5DQpgYGB7cn0NCnRlbXAgPC0gbGlzdChjKDMsNyw5LDYsMSksIGMoNiw5LDEyLDEzLDUpLCBjKDQsOCwzLC0xLC0zKSwgYygxLDQsNywyLC0yKSwgYyg1LDcsOSw0LDIpLCBjKC0zLDUsOCw5LDQpLCBjKDMsNiw5LDQsMSkpDQoNCmxhcHBseSh0ZW1wLCBtaW4pDQoNCnNlbGVjdCA8LSBmdW5jdGlvbih4KXsNCiAgcHJpbnQocGFzdGUoIlRoaXMgY29sbGVjdGlvbiBjb250YWlucyB0b3RhbCA9ICIsIHN1bSh4KSkpDQp9DQoNCmxpc3QgPC1sYXBwbHkodGVtcCwgc2VsZWN0KQ0KbGlzdA0KDQpmb3IgKHQgaW4gdGVtcCl7DQogIHByaW50KG1pbih0KSkNCn0NCg0KYGBgDQoNCmxhcHBseSBhbmQgYW5vbnltb3VzIGZ1bmN0aW9uDQpgYGB7cn0NCg0KKGZ1bmN0aW9uKHgseSl7Myp4Knl9KSg5LDEwKQ0KDQpwaW9uZWVycyA8LSBjKCJHQVVTUzoxNzc3IiwiQkFZRVM6MTcwMiIsIlBBU0NBTDoxNjIzIiwiUEVBUlNPTjoxODU3IikNCg0Kc3BsaXQgPC0gc3Ryc3BsaXQocGlvbmVlcnMsIHNwbGl0ID0gIjoiKQ0KDQpzcGxpdA0KDQpzcGxpdF9sb3dlciA8LSBsYXBwbHkoc3BsaXQsIHRvbG93ZXIpDQoNCnNwbGl0X2xvd2VyDQoNCm5hbWVzIDwtIGxhcHBseShzcGxpdF9sb3dlciwgZnVuY3Rpb24oeCl7eFsxXX0pDQpuYW1lcw0KDQp5ZWFycyA8LSBsYXBwbHkoc3BsaXRfbG93ZXIsIGZ1bmN0aW9uKHgpe3hbMl19KQ0KeWVhcnMNCmBgYA0KDQp1c2Ugb2YgbGFwcGx5IHVzaW5nIGFkaXRpb25hbCBhcmd1bWVudHMNCmBgYHtyfQ0Kc2VsZWN0X2VsIDwtIGZ1bmN0aW9uKHgsIGluZGV4KXsNCiAgeFtpbmRleF0NCn0NCg0KbmFtZXMgPC0gbGFwcGx5KHNwbGl0X2xvd2VyLCBzZWxlY3RfZWwsIDEpDQoNCm5hbWVzDQoNCnllYXJzIDwtIGxhcHBseShzcGxpdF9sb3dlciwgc2VsZWN0X2VsLCAyKQ0KDQp5ZWFycw0KYGBgDQoNClVzbyBkZSBzYXBwbHkNCmBgYHtyfQ0KdGVtcCA8LSBsaXN0KGMoMyw3LDksNiwxKSwgYyg2LDksMTIsMTMsNSksIGMoNCw4LDMsLTEsLTMpLCBjKDEsNCw3LDIsLTIpLCBjKDUsNyw5LDQsMiksIGMoLTMsNSw4LDksNCksIGMoMyw2LDksNCwxKSkNCg0KZXh0cmVtZSA8LSBmdW5jdGlvbih4KXsNCiAgYyhtaW49bWluKHgpLCBtYXg9bWF4KHgpKQ0KfQ0KDQpsYXBwbHkodGVtcCwgZXh0cmVtZSkNCnNhcHBseSh0ZW1wLCBleHRyZW1lKQ0KDQp0ZW1wMiA8LSBsaXN0KDEsMiwzLDQsNSkNCg0KdGVtcDINCmZ1bmNfdGVtcDIgPC0gZnVuY3Rpb24oeCl7DQogIHgNCn0NCg0KbGFwcGx5KHRlbXAyLCBmdW5jX3RlbXAyKQ0Kc2FwcGx5KHRlbXAyLCBmdW5jX3RlbXAyKQ0KDQoNCmBgYA0KDQoNCmBgYHtyfQ0KDQpiYXNpY3MgPC0gZnVuY3Rpb24oeCl7DQogIGMobWluID0gbWluKHgpLCBtZWFuID0gbWVhbih4KSwgbWF4ID0gbWF4KHgpKQ0KfQ0KDQpsYXBwbHkodGVtcCwgYmFzaWNzKQ0Kc2FwcGx5KHRlbXAsIGJhc2ljcykNCg0KdmFwcGx5KHRlbXAsIGJhc2ljcywgbnVtZXJpYygzKSkNCg0KdGVtcDMgPC0gYygiR3VhdGVtYWxhIiwiU2FsdmFkb3IiLCJIb25kdXJhcyIsICJOaWNhcmFndWEiKQ0KDQp1bmlxdWVfbGV0dGVycyA8LSBmdW5jdGlvbihuYW1lKXsNCiAgYmFuZSA8LSBnc3ViKCIgIiwiIiwgbmFtZSkNCiAgbGV0dGVycyA8LSBzdHJzcGxpdChuYW1lLCBzcGxpdCA9ICIiKVtbMV1dDQogIHVuaXF1ZShsZXR0ZXJzKQ0KfQ0KDQpsYXBwbHkodGVtcDMsIHVuaXF1ZV9sZXR0ZXJzKQ0Kc2FwcGx5KHRlbXAzLCB1bmlxdWVfbGV0dGVycykNCg0KdmFwcGx5KHRlbXAzLCB1bmlxdWVfbGV0dGVycywgbmNoYXIoNykpDQpgYGANCg0KRnVuY2lvbmVzIMO6dGlsZXMgaW5jb3Jwb3JhZGFzIGVuIFINCkV4aXN0ZW4gb3RyYXMgZnVuY2lvbmVzIHF1ZSB0YW1iacOpbiBzb24gw7p0aWxlcyB5IGRlYmVyw6FuIHNlciBleHBsb3JhZGFzDQppbmRpdmlkdWFsbWVudGUgeWEgcXVlIHBvciBzZXIgbXVjaGFzIG5vIHNlIHBvZHLDoW4gdmVyIGVuIGVsIGN1cnNvLg0KYGBge3J9DQplcnJvcnMgPC0gYygxLjksIC0yLjYsIDQuMCwgLTkuNSwgLTMuNCwgNy4zKQ0KDQpwcmludChyb3VuZChzdW0oYWJzKGVycm9ycykpKSkNCg0KP3JvdW5kDQoNCmxpbmtlZGluIDwtIGxpc3QoMTYsIDksIDEzLCA1LCAyLCAxNywgMTQpDQpmYWNlYm9vayA8LSBsaXN0KDE3LCA3LCA1LCAxNiwgOCwgMTMsIDE0KQ0KbGlua2VkaW4NCg0KDQpsaV92ZWMgPC0gdW5saXN0KGxpbmtlZGluKQ0KZmJfdmVjIDwtIHVubGlzdChmYWNlYm9vaykNCmxpX3ZlYw0KZmJfdmVjDQoNCnNvY2lhbF92ZWMgPC0gYXBwZW5kKGxpX3ZlYywgZmJfdmVjKQ0Kc29jaWFsX3ZlYw0KDQpzb3J0KHNvY2lhbF92ZWMsIGRlY3JlYXNpbmcgPSBUUlVFKQ0KDQpgYGANCg0KVXNvIGRlIGdyZXAgeSBncmVwbA0KYGBge3J9DQplbWFpbHMgPC0gYygiam9obi5kb2VAaXZ5bGVhZ3VlLmVkdSIsICJlZHVjYXRpb25Ad29ybGQuZ292IiwgImRhbGFpLmxhbWFAcGVhY2Uub3JnIiwNCiAgICAgICAgICAgICJpbnZhbGlkLmVkdSIsICJxdWFudEBiaWdkYXRhY29sbGVnZS5lZHUiLCAiY29va2llLm1vbnN0ZXJAc2VzYW1lLnR2IikNCg0KZ3JlcGwocGF0dGVybiA9ICJlZHUiLCBlbWFpbHMpDQpoaXRzIDwtIGdyZXAocGF0dGVybiA9ICJlZHUiLCBlbWFpbHMpDQoNCmVtYWlsc1toaXRzXQ0KDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoZ2FwbWluZGVyKQ0KbGlicmFyeShkcGx5cikNCg0KZ2FwbWluZGVyDQpgYGANCg0KRGF0YSB3cmFuZ2xpbmcNClNlIHV0aWxpemFyw6EgbGEgZnVuY2nDs24gZmlsdGVyIHBhcmEgZXh0cmFlciBvYnNlcnZhY2lvbmVzIHBhcnRpY3VsYXJlcw0KUGFyYSBwb2RlciB1dGlsaXphciBsYSBmdW5jacOzbiBmaWx0ZXIgbmVjZXNpdGFtb3MgYWdyZWdhciBlbCBjb21hbmRvIHBpcGUgJT4lDQpgYGB7cn0NCmdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMTk1NykNCg0KYGBgDQoNClVzYW5kbyBsYSBmdW5jacOzbiBhcnJhbmdlDQpgYGB7cn0NCmdhcG1pbmRlciAlPiUNCiAgYXJyYW5nZShsaWZlRXhwKQ0KDQpnYXBtaW5kZXIgJT4lDQogIGFycmFuZ2UoZGVzYyhsaWZlRXhwKSkNCg0KYGBgDQpVdGlsaXphbmRvIG1hcyBkZSAxIGZ1bmNpw7NuDQpgYGB7cn0NCmdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMTk1NykgJT4lDQogIGFycmFuZ2UocG9wKQ0KDQpgYGANCkNvbWJpbmluZyBmaWx0ZXIsIG11dGF0ZSBhbmQgYXJyYW5nZQ0KYGBge3J9DQpnYXBtaW5kZXIgJT4lDQogIGZpbHRlcih5ZWFyID09IDIwMDcpICU+JQ0KICBtdXRhdGUobGlmZUV4cE1vbnRocyA9IDEyICogbGlmZUV4cCkgJT4lDQogIGFycmFuZ2UoZGVzYyhsaWZlRXhwTW9udGhzKSkNCmBgYA0KDQpWaXN1YWxpemFjacOzbiBjb24gR0dQTE9UMg0KYGBge3J9DQpsaWJyYXJ5KGdncGxvdDIpDQoNCmdhcG1pbmRlcl8xOTUyIDwtIGdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMTk1MikNCg0KZ2FwbWluZGVyXzE5NTINCiMgRWwgc2ltYm9sbyArIGZ1bmNpb25hIGNvbW8gcGlwZSBwYXJhIGxhIGxpYnJlcmlhIGdncGxvdA0KZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9Z2RwUGVyY2FwKSkgKw0KICBnZW9tX3BvaW50KCkNCg0KYGBgDQoNCkVzY2FsYSBsb2dhcml0bWljYQ0KVW5hIGhlcnJhbWllbnRhIMO6dGlsIGFsIG1vbWVudG8gZGUgZ3JhZmljYXIgZ3JhbmRlcyBjYW50aWRhZGVzIGRlIGRhdG9zDQpgYGB7cn0NCmdncGxvdChnYXBtaW5kZXJfMTk1MiwgYWVzKHg9cG9wLCB5PWdkcFBlcmNhcCkpICsNCiAgZ2VvbV9wb2ludCgpICsNCiAgc2NhbGVfeF9sb2cxMCgpICsNCiAgc2NhbGVfeV9sb2cxMCgpDQoNCmBgYA0KDQpBZ3JlZ2FuZG8gY29sb3IgYWwgZ3LDoWZpY28NCmBgYHtyfQ0KZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9bGlmZUV4cCwgY29sb3IgPSBjb250aW5lbnQpKSArDQogIGdlb21fcG9pbnQoKSArDQogIHNjYWxlX3hfbG9nMTAoKQ0KDQpgYGANCg0K</div>
 
 
 
@@ -524,7 +359,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Sesion4.Rmd");
+  window.initializeSourceEmbed("Sesion5.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

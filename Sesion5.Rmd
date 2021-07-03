@@ -1,0 +1,77 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(gapminder)
+library(dplyr)
+
+gapminder
+```
+
+Data wrangling
+Se utilizará la función filter para extraer observaciones particulares
+Para poder utilizar la función filter necesitamos agregar el comando pipe %>%
+```{r}
+gapminder %>%
+  filter(year == 1957)
+
+```
+
+Usando la función arrange
+```{r}
+gapminder %>%
+  arrange(lifeExp)
+
+gapminder %>%
+  arrange(desc(lifeExp))
+
+```
+Utilizando mas de 1 función
+```{r}
+gapminder %>%
+  filter(year == 1957) %>%
+  arrange(pop)
+
+```
+Combining filter, mutate and arrange
+```{r}
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(lifeExpMonths = 12 * lifeExp) %>%
+  arrange(desc(lifeExpMonths))
+```
+
+Visualización con GGPLOT2
+```{r}
+library(ggplot2)
+
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+
+gapminder_1952
+# El simbolo + funciona como pipe para la libreria ggplot
+ggplot(gapminder_1952, aes(x=pop, y=gdpPercap)) +
+  geom_point()
+
+```
+
+Escala logaritmica
+Una herramienta útil al momento de graficar grandes cantidades de datos
+```{r}
+ggplot(gapminder_1952, aes(x=pop, y=gdpPercap)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
+
+```
+
+Agregando color al gráfico
+```{r}
+ggplot(gapminder_1952, aes(x=pop, y=lifeExp, color = continent)) +
+  geom_point() +
+  scale_x_log10()
+
+```
+
