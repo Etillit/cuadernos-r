@@ -75,3 +75,32 @@ ggplot(gapminder_1952, aes(x=pop, y=lifeExp, color = continent)) +
 
 ```
 
+Agregando tamaño a la gráfica
+```{r}
+ggplot(gapminder_1952, aes(x=pop, y=lifeExp, color = continent, size = gdpPercap)) +
+  geom_point() +
+  scale_x_log10()
+
+```
+
+Facetado
+```{r}
+gapminder_1952
+
+ggplot(gapminder_1952, aes(x=pop, y=lifeExp)) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~ continent)
+
+```
+
+Facetado por año
+```{r}
+
+ggplot(gapminder, aes(x=gdpPercap, y=lifeExp)) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~ year)
+
+```
+
