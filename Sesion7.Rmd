@@ -1,0 +1,89 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Seleccionando columnas
+```{r}
+#cargamos librería para uso de la sesión
+library(tidyverse)
+
+#Sets de datos requeridos para la sesión ejercicios Join
+sets <- read_csv('sets.csv')
+themes <- read_csv('themes.csv')
+parts <- read_csv('parts.csv')
+part_categories <- read_csv('part_categories.csv')
+
+```
+
+```{r}
+counties <- read_csv('counties.csv')
+counties
+
+counties %>%
+  select(state, county, population, professional:production)
+
+```
+
+select helpers
+  starts_with()
+  ends_with()
+  contains()
+```{r}
+counties %>%
+  select(state, county, population, ends_with("work"), starts_with("income"))
+
+counties %>%
+  select(state, county, population, contains("per"))
+
+```
+
+Verbo Rename()
+```{r}
+counties %>%
+  count(state) %>%
+  rename(num_counties = n)
+```
+
+Verbo transmute
+```{r}
+counties %>%
+  transmute(state, county, population, density=population/land_area) %>%
+  filter(population > 1000000) %>%
+  arrange(density)
+
+```
+
+Diferencia entre select, mutate, transmute y rename
+```{r}
+#1er requerimiento de la presentación
+counties %>%
+  rename(unemployment_rate = unemployment)
+
+#2do requerimiento de la presentación
+counties %>%
+  select(state, county, contains('poverty'))
+
+#3er requerimiento - diferencia entre mutate y transmute
+counties %>%
+  mutate(fraction_women = women / population)
+
+counties %>%
+  transmute(state, county, unemployment_rate = employed / population)
+```
+
+Joining data using dplyr
+```{r}
+sets
+themes
+
+```
+
+Inner Join
+```{r}
+
+sets %>%
+  inner_join(themes, by = c("theme_id"="id"))
+
+```
+
