@@ -3,3 +3,116 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+```{r}
+library(tidyverse)
+
+parts <- read_csv("parts.csv")
+part_categories <- read_csv("part_categories.csv")
+themes <- read_csv("themes.csv")
+
+inventories <- read_csv("inventories.csv")
+inventory_parts <- read_csv("inventory_parts.csv")
+colors <-read_csv("colors.csv")
+
+inventories
+inventory_parts
+colors
+
+```
+
+Join de 3 datasets
+```{r}
+inventory_parts_joined <- inventories %>%
+  inner_join(inventory_parts, by = c("id" = "inventory_id")) %>%
+  select(-id, -version) %>%
+  arrange(desc(quantity))
+
+batmobile <- inventory_parts_joined %>%
+  filter(set_num == "7784-1") %>%
+  select(-set_num)
+batmobile
+
+batwing <- inventory_parts_joined %>%
+  filter(set_num == "70916-1") %>%
+  select(-set_num)
+batwing
+
+batmobile %>%
+  inner_join(batwing, by = c("part_num", "color_id"), suffix = c("_batmobile", "_batwing"))
+
+# Dado que en los dos dataset existe la columna "part_num" y "color_id" no es
+# necesario hacer la igualación en la sentencia
+```
+
+Join en ambas direcciones
+```{r}
+parts %>%
+  inner_join(inventory_parts, "part_num")
+
+inventory_parts %>%
+  inner_join(parts, "part_num")
+
+```
+
+Join usando multiples tablas
+```{r}
+sets %>%
+  inner_join(inventories, by = "set_num") %>%
+  inner_join(inventory_parts, by = c("id" = "inventory_id")) %>%
+  inner_join(colors, by = c("color_id" = "id"), suffix = c("_set","_color")) %>%
+  count(name_color) %>%
+  arrange(desc(n))
+```
+
+Inner Join, Left Join y Right Join
+```{r}
+batmobile %>%
+  inner_join(batwing, by = c("part_num", "color_id"), suffix = c("_batmobile", "_batwing"))
+
+batmobile %>%
+  left_join(batwing, by = c("part_num", "color_id"), suffix = c("_batmobile", "_batwing"))
+
+
+```
+
+
+```{r}
+millenium_falcon <- inventory_parts_joined %>%
+  filter(set_num == "7965-1")
+millenium_falcon
+
+star_destroyer <- inventory_parts_joined %>%
+  filter(set_num == "75190-1")
+star_destroyer
+
+millenium_falcon %>%
+  left_join(star_destroyer, by = c("part_num","color_id"), suffix = c("_falcon","_star_destroyer"))
+
+millenium_falcon_color <- millenium_falcon %>%
+  group_by(color_id) %>%
+  summarize(total_quantity = sum(quantity))
+millenium_falcon_color
+
+star_destroyer_color <- star_destroyer %>%
+  group_by(color_id) %>%
+  summarize(total_quantity = sum(quantity))
+star_destroyer_color
+
+millenium_falcon_color %>%
+  left_join(star_destroyer_color, by = "color_id", suffix = c("_falcon", "_star_detroyer"))
+
+```
+right join
+```{r}
+parts %>%
+  count(part_cat_id) %>%
+  right_join(part_categories, by = c("part_cat_id" = "id")) %>%
+  replace_na(list(n=0))
+```
+
+```{r}
+themes %>%
+  inner_join(themes, by = c("id" = "parent_id"), suffix = c("_parent", "_child"))
+
+```
+

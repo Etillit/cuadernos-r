@@ -216,8 +216,144 @@ pre code {
 
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbnBhcnRzIDwtIHJlYWRfY3N2KFwicGFydHMuY3N2XCIpXG5wYXJ0X2NhdGVnb3JpZXMgPC0gcmVhZF9jc3YoXCJwYXJ0X2NhdGVnb3JpZXMuY3N2XCIpXG50aGVtZXMgPC0gcmVhZF9jc3YoXCJ0aGVtZXMuY3N2XCIpXG5cbmludmVudG9yaWVzIDwtIHJlYWRfY3N2KFwiaW52ZW50b3JpZXMuY3N2XCIpXG5pbnZlbnRvcnlfcGFydHMgPC0gcmVhZF9jc3YoXCJpbnZlbnRvcnlfcGFydHMuY3N2XCIpXG5jb2xvcnMgPC1yZWFkX2NzdihcImNvbG9ycy5jc3ZcIilcblxuaW52ZW50b3JpZXNcbmludmVudG9yeV9wYXJ0c1xuY29sb3JzXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(tidyverse)
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQo=</div>
+parts &lt;- read_csv(&quot;parts.csv&quot;)
+part_categories &lt;- read_csv(&quot;part_categories.csv&quot;)
+themes &lt;- read_csv(&quot;themes.csv&quot;)
+
+inventories &lt;- read_csv(&quot;inventories.csv&quot;)
+inventory_parts &lt;- read_csv(&quot;inventory_parts.csv&quot;)
+colors &lt;-read_csv(&quot;colors.csv&quot;)
+
+inventories
+inventory_parts
+colors
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Join de 3 datasets</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW52ZW50b3J5X3BhcnRzX2pvaW5lZCA8LSBpbnZlbnRvcmllcyAlPiVcbiAgaW5uZXJfam9pbihpbnZlbnRvcnlfcGFydHMsIGJ5ID0gYyhcImlkXCIgPSBcImludmVudG9yeV9pZFwiKSkgJT4lXG4gIHNlbGVjdCgtaWQsIC12ZXJzaW9uKSAlPiVcbiAgYXJyYW5nZShkZXNjKHF1YW50aXR5KSlcblxuYmF0bW9iaWxlIDwtIGludmVudG9yeV9wYXJ0c19qb2luZWQgJT4lXG4gIGZpbHRlcihzZXRfbnVtID09IFwiNzc4NC0xXCIpICU+JVxuICBzZWxlY3QoLXNldF9udW0pXG5iYXRtb2JpbGVcblxuYmF0d2luZyA8LSBpbnZlbnRvcnlfcGFydHNfam9pbmVkICU+JVxuICBmaWx0ZXIoc2V0X251bSA9PSBcIjcwOTE2LTFcIikgJT4lXG4gIHNlbGVjdCgtc2V0X251bSlcbmJhdHdpbmdcblxuYmF0bW9iaWxlICU+JVxuICBpbm5lcl9qb2luKGJhdHdpbmcsIGJ5ID0gYyhcInBhcnRfbnVtXCIsIFwiY29sb3JfaWRcIiksIHN1ZmZpeCA9IGMoXCJfYmF0bW9iaWxlXCIsIFwiX2JhdHdpbmdcIikpXG5cbiMgRGFkbyBxdWUgZW4gbG9zIGRvcyBkYXRhc2V0IGV4aXN0ZSBsYSBjb2x1bW5hIFwicGFydF9udW1cIiB5IFwiY29sb3JfaWRcIiBubyBlc1xuIyBuZWNlc2FyaW8gaGFjZXIgbGEgaWd1YWxhY2nDs24gZW4gbGEgc2VudGVuY2lhXG5gYGAifQ== -->
+<pre class="r"><code>inventory_parts_joined &lt;- inventories %&gt;%
+  inner_join(inventory_parts, by = c(&quot;id&quot; = &quot;inventory_id&quot;)) %&gt;%
+  select(-id, -version) %&gt;%
+  arrange(desc(quantity))
+
+batmobile &lt;- inventory_parts_joined %&gt;%
+  filter(set_num == &quot;7784-1&quot;) %&gt;%
+  select(-set_num)
+batmobile
+
+batwing &lt;- inventory_parts_joined %&gt;%
+  filter(set_num == &quot;70916-1&quot;) %&gt;%
+  select(-set_num)
+batwing
+
+batmobile %&gt;%
+  inner_join(batwing, by = c(&quot;part_num&quot;, &quot;color_id&quot;), suffix = c(&quot;_batmobile&quot;, &quot;_batwing&quot;))
+
+# Dado que en los dos dataset existe la columna &quot;part_num&quot; y &quot;color_id&quot; no es
+# necesario hacer la igualación en la sentencia</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Join en ambas direcciones</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFydHMgJT4lXG4gIGlubmVyX2pvaW4oaW52ZW50b3J5X3BhcnRzLCBcInBhcnRfbnVtXCIpXG5cbmludmVudG9yeV9wYXJ0cyAlPiVcbiAgaW5uZXJfam9pbihwYXJ0cywgXCJwYXJ0X251bVwiKVxuXG5gYGAifQ== -->
+<pre class="r"><code>parts %&gt;%
+  inner_join(inventory_parts, &quot;part_num&quot;)
+
+inventory_parts %&gt;%
+  inner_join(parts, &quot;part_num&quot;)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Join usando multiples tablas</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0cyAlPiVcbiAgaW5uZXJfam9pbihpbnZlbnRvcmllcywgYnkgPSBcInNldF9udW1cIikgJT4lXG4gIGlubmVyX2pvaW4oaW52ZW50b3J5X3BhcnRzLCBieSA9IGMoXCJpZFwiID0gXCJpbnZlbnRvcnlfaWRcIikpICU+JVxuICBpbm5lcl9qb2luKGNvbG9ycywgYnkgPSBjKFwiY29sb3JfaWRcIiA9IFwiaWRcIiksIHN1ZmZpeCA9IGMoXCJfc2V0XCIsXCJfY29sb3JcIikpICU+JVxuICBjb3VudChuYW1lX2NvbG9yKSAlPiVcbiAgYXJyYW5nZShkZXNjKG4pKVxuYGBgIn0= -->
+<pre class="r"><code>sets %&gt;%
+  inner_join(inventories, by = &quot;set_num&quot;) %&gt;%
+  inner_join(inventory_parts, by = c(&quot;id&quot; = &quot;inventory_id&quot;)) %&gt;%
+  inner_join(colors, by = c(&quot;color_id&quot; = &quot;id&quot;), suffix = c(&quot;_set&quot;,&quot;_color&quot;)) %&gt;%
+  count(name_color) %&gt;%
+  arrange(desc(n))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Inner Join, Left Join y Right Join</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmF0bW9iaWxlICU+JVxuICBpbm5lcl9qb2luKGJhdHdpbmcsIGJ5ID0gYyhcInBhcnRfbnVtXCIsIFwiY29sb3JfaWRcIiksIHN1ZmZpeCA9IGMoXCJfYmF0bW9iaWxlXCIsIFwiX2JhdHdpbmdcIikpXG5cbmJhdG1vYmlsZSAlPiVcbiAgbGVmdF9qb2luKGJhdHdpbmcsIGJ5ID0gYyhcInBhcnRfbnVtXCIsIFwiY29sb3JfaWRcIiksIHN1ZmZpeCA9IGMoXCJfYmF0bW9iaWxlXCIsIFwiX2JhdHdpbmdcIikpXG5cblxuYGBgIn0= -->
+<pre class="r"><code>batmobile %&gt;%
+  inner_join(batwing, by = c(&quot;part_num&quot;, &quot;color_id&quot;), suffix = c(&quot;_batmobile&quot;, &quot;_batwing&quot;))
+
+batmobile %&gt;%
+  left_join(batwing, by = c(&quot;part_num&quot;, &quot;color_id&quot;), suffix = c(&quot;_batmobile&quot;, &quot;_batwing&quot;))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWlsbGVuaXVtX2ZhbGNvbiA8LSBpbnZlbnRvcnlfcGFydHNfam9pbmVkICU+JVxuICBmaWx0ZXIoc2V0X251bSA9PSBcIjc5NjUtMVwiKVxubWlsbGVuaXVtX2ZhbGNvblxuXG5zdGFyX2Rlc3Ryb3llciA8LSBpbnZlbnRvcnlfcGFydHNfam9pbmVkICU+JVxuICBmaWx0ZXIoc2V0X251bSA9PSBcIjc1MTkwLTFcIilcbnN0YXJfZGVzdHJveWVyXG5cbm1pbGxlbml1bV9mYWxjb24gJT4lXG4gIGxlZnRfam9pbihzdGFyX2Rlc3Ryb3llciwgYnkgPSBjKFwicGFydF9udW1cIixcImNvbG9yX2lkXCIpLCBzdWZmaXggPSBjKFwiX2ZhbGNvblwiLFwiX3N0YXJfZGVzdHJveWVyXCIpKVxuXG5taWxsZW5pdW1fZmFsY29uX2NvbG9yIDwtIG1pbGxlbml1bV9mYWxjb24gJT4lXG4gIGdyb3VwX2J5KGNvbG9yX2lkKSAlPiVcbiAgc3VtbWFyaXplKHRvdGFsX3F1YW50aXR5ID0gc3VtKHF1YW50aXR5KSlcbm1pbGxlbml1bV9mYWxjb25fY29sb3Jcblxuc3Rhcl9kZXN0cm95ZXJfY29sb3IgPC0gc3Rhcl9kZXN0cm95ZXIgJT4lXG4gIGdyb3VwX2J5KGNvbG9yX2lkKSAlPiVcbiAgc3VtbWFyaXplKHRvdGFsX3F1YW50aXR5ID0gc3VtKHF1YW50aXR5KSlcbnN0YXJfZGVzdHJveWVyX2NvbG9yXG5cbm1pbGxlbml1bV9mYWxjb25fY29sb3IgJT4lXG4gIGxlZnRfam9pbihzdGFyX2Rlc3Ryb3llcl9jb2xvciwgYnkgPSBcImNvbG9yX2lkXCIsIHN1ZmZpeCA9IGMoXCJfZmFsY29uXCIsIFwiX3N0YXJfZGV0cm95ZXJcIikpXG5cbmBgYCJ9 -->
+<pre class="r"><code>millenium_falcon &lt;- inventory_parts_joined %&gt;%
+  filter(set_num == &quot;7965-1&quot;)
+millenium_falcon
+
+star_destroyer &lt;- inventory_parts_joined %&gt;%
+  filter(set_num == &quot;75190-1&quot;)
+star_destroyer
+
+millenium_falcon %&gt;%
+  left_join(star_destroyer, by = c(&quot;part_num&quot;,&quot;color_id&quot;), suffix = c(&quot;_falcon&quot;,&quot;_star_destroyer&quot;))
+
+millenium_falcon_color &lt;- millenium_falcon %&gt;%
+  group_by(color_id) %&gt;%
+  summarize(total_quantity = sum(quantity))
+millenium_falcon_color
+
+star_destroyer_color &lt;- star_destroyer %&gt;%
+  group_by(color_id) %&gt;%
+  summarize(total_quantity = sum(quantity))
+star_destroyer_color
+
+millenium_falcon_color %&gt;%
+  left_join(star_destroyer_color, by = &quot;color_id&quot;, suffix = c(&quot;_falcon&quot;, &quot;_star_detroyer&quot;))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>right join</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFydHMgJT4lXG4gIGNvdW50KHBhcnRfY2F0X2lkKSAlPiVcbiAgcmlnaHRfam9pbihwYXJ0X2NhdGVnb3JpZXMsIGJ5ID0gYyhcInBhcnRfY2F0X2lkXCIgPSBcImlkXCIpKSAlPiVcbiAgcmVwbGFjZV9uYShsaXN0KG49MCkpXG5gYGAifQ== -->
+<pre class="r"><code>parts %&gt;%
+  count(part_cat_id) %&gt;%
+  right_join(part_categories, by = c(&quot;part_cat_id&quot; = &quot;id&quot;)) %&gt;%
+  replace_na(list(n=0))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGhlbWVzICU+JVxuICBpbm5lcl9qb2luKHRoZW1lcywgYnkgPSBjKFwiaWRcIiA9IFwicGFyZW50X2lkXCIpLCBzdWZmaXggPSBjKFwiX3BhcmVudFwiLCBcIl9jaGlsZFwiKSlcblxuYGBgIn0= -->
+<pre class="r"><code>themes %&gt;%
+  inner_join(themes, by = c(&quot;id&quot; = &quot;parent_id&quot;), suffix = c(&quot;_parent&quot;, &quot;_child&quot;))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KDQpwYXJ0cyA8LSByZWFkX2NzdigicGFydHMuY3N2IikNCnBhcnRfY2F0ZWdvcmllcyA8LSByZWFkX2NzdigicGFydF9jYXRlZ29yaWVzLmNzdiIpDQp0aGVtZXMgPC0gcmVhZF9jc3YoInRoZW1lcy5jc3YiKQ0KDQppbnZlbnRvcmllcyA8LSByZWFkX2NzdigiaW52ZW50b3JpZXMuY3N2IikNCmludmVudG9yeV9wYXJ0cyA8LSByZWFkX2NzdigiaW52ZW50b3J5X3BhcnRzLmNzdiIpDQpjb2xvcnMgPC1yZWFkX2NzdigiY29sb3JzLmNzdiIpDQoNCmludmVudG9yaWVzDQppbnZlbnRvcnlfcGFydHMNCmNvbG9ycw0KDQpgYGANCg0KSm9pbiBkZSAzIGRhdGFzZXRzDQpgYGB7cn0NCmludmVudG9yeV9wYXJ0c19qb2luZWQgPC0gaW52ZW50b3JpZXMgJT4lDQogIGlubmVyX2pvaW4oaW52ZW50b3J5X3BhcnRzLCBieSA9IGMoImlkIiA9ICJpbnZlbnRvcnlfaWQiKSkgJT4lDQogIHNlbGVjdCgtaWQsIC12ZXJzaW9uKSAlPiUNCiAgYXJyYW5nZShkZXNjKHF1YW50aXR5KSkNCg0KYmF0bW9iaWxlIDwtIGludmVudG9yeV9wYXJ0c19qb2luZWQgJT4lDQogIGZpbHRlcihzZXRfbnVtID09ICI3Nzg0LTEiKSAlPiUNCiAgc2VsZWN0KC1zZXRfbnVtKQ0KYmF0bW9iaWxlDQoNCmJhdHdpbmcgPC0gaW52ZW50b3J5X3BhcnRzX2pvaW5lZCAlPiUNCiAgZmlsdGVyKHNldF9udW0gPT0gIjcwOTE2LTEiKSAlPiUNCiAgc2VsZWN0KC1zZXRfbnVtKQ0KYmF0d2luZw0KDQpiYXRtb2JpbGUgJT4lDQogIGlubmVyX2pvaW4oYmF0d2luZywgYnkgPSBjKCJwYXJ0X251bSIsICJjb2xvcl9pZCIpLCBzdWZmaXggPSBjKCJfYmF0bW9iaWxlIiwgIl9iYXR3aW5nIikpDQoNCiMgRGFkbyBxdWUgZW4gbG9zIGRvcyBkYXRhc2V0IGV4aXN0ZSBsYSBjb2x1bW5hICJwYXJ0X251bSIgeSAiY29sb3JfaWQiIG5vIGVzDQojIG5lY2VzYXJpbyBoYWNlciBsYSBpZ3VhbGFjacOzbiBlbiBsYSBzZW50ZW5jaWENCmBgYA0KDQpKb2luIGVuIGFtYmFzIGRpcmVjY2lvbmVzDQpgYGB7cn0NCnBhcnRzICU+JQ0KICBpbm5lcl9qb2luKGludmVudG9yeV9wYXJ0cywgInBhcnRfbnVtIikNCg0KaW52ZW50b3J5X3BhcnRzICU+JQ0KICBpbm5lcl9qb2luKHBhcnRzLCAicGFydF9udW0iKQ0KDQpgYGANCg0KSm9pbiB1c2FuZG8gbXVsdGlwbGVzIHRhYmxhcw0KYGBge3J9DQpzZXRzICU+JQ0KICBpbm5lcl9qb2luKGludmVudG9yaWVzLCBieSA9ICJzZXRfbnVtIikgJT4lDQogIGlubmVyX2pvaW4oaW52ZW50b3J5X3BhcnRzLCBieSA9IGMoImlkIiA9ICJpbnZlbnRvcnlfaWQiKSkgJT4lDQogIGlubmVyX2pvaW4oY29sb3JzLCBieSA9IGMoImNvbG9yX2lkIiA9ICJpZCIpLCBzdWZmaXggPSBjKCJfc2V0IiwiX2NvbG9yIikpICU+JQ0KICBjb3VudChuYW1lX2NvbG9yKSAlPiUNCiAgYXJyYW5nZShkZXNjKG4pKQ0KYGBgDQoNCklubmVyIEpvaW4sIExlZnQgSm9pbiB5IFJpZ2h0IEpvaW4NCmBgYHtyfQ0KYmF0bW9iaWxlICU+JQ0KICBpbm5lcl9qb2luKGJhdHdpbmcsIGJ5ID0gYygicGFydF9udW0iLCAiY29sb3JfaWQiKSwgc3VmZml4ID0gYygiX2JhdG1vYmlsZSIsICJfYmF0d2luZyIpKQ0KDQpiYXRtb2JpbGUgJT4lDQogIGxlZnRfam9pbihiYXR3aW5nLCBieSA9IGMoInBhcnRfbnVtIiwgImNvbG9yX2lkIiksIHN1ZmZpeCA9IGMoIl9iYXRtb2JpbGUiLCAiX2JhdHdpbmciKSkNCg0KDQpgYGANCg0KDQpgYGB7cn0NCm1pbGxlbml1bV9mYWxjb24gPC0gaW52ZW50b3J5X3BhcnRzX2pvaW5lZCAlPiUNCiAgZmlsdGVyKHNldF9udW0gPT0gIjc5NjUtMSIpDQptaWxsZW5pdW1fZmFsY29uDQoNCnN0YXJfZGVzdHJveWVyIDwtIGludmVudG9yeV9wYXJ0c19qb2luZWQgJT4lDQogIGZpbHRlcihzZXRfbnVtID09ICI3NTE5MC0xIikNCnN0YXJfZGVzdHJveWVyDQoNCm1pbGxlbml1bV9mYWxjb24gJT4lDQogIGxlZnRfam9pbihzdGFyX2Rlc3Ryb3llciwgYnkgPSBjKCJwYXJ0X251bSIsImNvbG9yX2lkIiksIHN1ZmZpeCA9IGMoIl9mYWxjb24iLCJfc3Rhcl9kZXN0cm95ZXIiKSkNCg0KbWlsbGVuaXVtX2ZhbGNvbl9jb2xvciA8LSBtaWxsZW5pdW1fZmFsY29uICU+JQ0KICBncm91cF9ieShjb2xvcl9pZCkgJT4lDQogIHN1bW1hcml6ZSh0b3RhbF9xdWFudGl0eSA9IHN1bShxdWFudGl0eSkpDQptaWxsZW5pdW1fZmFsY29uX2NvbG9yDQoNCnN0YXJfZGVzdHJveWVyX2NvbG9yIDwtIHN0YXJfZGVzdHJveWVyICU+JQ0KICBncm91cF9ieShjb2xvcl9pZCkgJT4lDQogIHN1bW1hcml6ZSh0b3RhbF9xdWFudGl0eSA9IHN1bShxdWFudGl0eSkpDQpzdGFyX2Rlc3Ryb3llcl9jb2xvcg0KDQptaWxsZW5pdW1fZmFsY29uX2NvbG9yICU+JQ0KICBsZWZ0X2pvaW4oc3Rhcl9kZXN0cm95ZXJfY29sb3IsIGJ5ID0gImNvbG9yX2lkIiwgc3VmZml4ID0gYygiX2ZhbGNvbiIsICJfc3Rhcl9kZXRyb3llciIpKQ0KDQpgYGANCnJpZ2h0IGpvaW4NCmBgYHtyfQ0KcGFydHMgJT4lDQogIGNvdW50KHBhcnRfY2F0X2lkKSAlPiUNCiAgcmlnaHRfam9pbihwYXJ0X2NhdGVnb3JpZXMsIGJ5ID0gYygicGFydF9jYXRfaWQiID0gImlkIikpICU+JQ0KICByZXBsYWNlX25hKGxpc3Qobj0wKSkNCmBgYA0KDQpgYGB7cn0NCnRoZW1lcyAlPiUNCiAgaW5uZXJfam9pbih0aGVtZXMsIGJ5ID0gYygiaWQiID0gInBhcmVudF9pZCIpLCBzdWZmaXggPSBjKCJfcGFyZW50IiwgIl9jaGlsZCIpKQ0KDQpgYGANCg0K</div>
 
 
 
