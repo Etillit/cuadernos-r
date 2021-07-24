@@ -103,4 +103,3 @@ ggplot(gapminder, aes(x=gdpPercap, y=lifeExp)) +
   facet_wrap(~ year)
 
 ```
-
